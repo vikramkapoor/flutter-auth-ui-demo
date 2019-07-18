@@ -1,41 +1,68 @@
+import 'package:flutter_auth_ui_demo/external/flutter-auth-ui/lib/faui.dart';
 import 'package:flutter_web/material.dart';
-import 'package:job_chat.ui/infrastructure/JcConfig.dart';
-import 'package:job_chat.ui/infrastructure/JcRoute.dart';
-import 'package:job_chat.ui/infrastructure/JcScreenBuilder.dart';
-import 'package:job_chat.ui/screens/HomeScreen.dart';
 
 void main() {
-  JcConfig.FirebaseApiKey = 'AIzaSyBiUVZ3eIE-WRoB4OGDTTtzzaOd9qj5VCg';
-  runApp(JobChat());
+  runApp(FlutterAuthUiDemo());
 }
 
-class JobChat extends StatelessWidget {
+class FlutterAuthUiDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: JcRoute.HomeLanding,
-      debugShowCheckedModeBanner: false,
-      routes: {
-        JcRoute.HomeLanding: (context) => HomeScreen(),
-        JcRoute.Coaches: (context) => CoachesScreen(),
-      },
-    );
+    return MaterialApp(home: Scaffold(body: HomeScreen()));
   }
 }
 
-class CoachesScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool wantToSignIn = false;
   @override
   Widget build(BuildContext context) {
-    Widget body = Center(
-      child: RaisedButton(
-        child: Text('Go back!'),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
+    if (faui.User == null && !this.wantToSignIn) {
+      return Column(
+        children: <Widget>[
+          RaisedButton(
+            child: Text("Sign In"),
+            onPressed: () {
+              this.setState(() {
+                this.wantToSignIn = true;
+              });
+            },
+          )
+        ],
+      );
+    }
 
-    return JcPageBuilder.BuildScreen(
-        context: context, title: "Coaches", body: body);
+    if (faui.User == null && this.wantToSignIn) {
+      return faui.BuildAuthScreen(
+        onSuccess: () {
+          this.setState(() {
+            this.wantToSignIn = false;
+          });
+        },
+        onCancel: () {
+          this.setState(() {
+            this.wantToSignIn = false;
+          });
+        },
+        firebaseApiKey: "AIzaSyA3hshWKqeogfYiklVCCtDaWJW8TfgWgB4",
+      );
+    }
+
+    return Column(
+      children: <Widget>[
+        Text("Hello, ${faui.User.email}"),
+        RaisedButton(
+          child: Text("Sign Out"),
+          onPressed: () {
+            faui.SignOut();
+            this.setState(() {});
+          },
+        )
+      ],
+    );
   }
 }

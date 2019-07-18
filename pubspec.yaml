@@ -1,4 +1,4 @@
-name: job_chat.ui
+name: flutter_auth_ui_demo
 
 environment:
   sdk: '>=2.3.0-dev.0.1 <3.0.0'
