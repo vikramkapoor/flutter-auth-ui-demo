@@ -1,5 +1,7 @@
 import 'package:flutter_web/foundation.dart';
 import 'package:flutter_web/material.dart';
+import 'package:job_chat.ui/external/flutter-auth-ui/lib/faui.dart';
+import 'package:job_chat.ui/external/flutter-auth-ui/lib/faui_model.dart';
 import 'package:job_chat.ui/infrastructure/JcRoute.dart';
 import 'package:job_chat.ui/utility/UiUtil.dart';
 
