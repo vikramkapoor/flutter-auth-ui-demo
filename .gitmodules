@@ -1,3 +1,6 @@
 [submodule "lib/external/flutter-auth-ui"]
 	path = lib/external/flutter-auth-ui
 	url = https://github.com/pcherkasova/flutter-auth-ui
+[submodule "lib/external"]
+	path = lib/external
+	url = https://github.com/pcherkasova/flutter-auth-ui
