@@ -1,2 +1,3 @@
 # flutter-auth-ui-demo
-Demo for flutter-auth-ui
+
+This is demo app for [flutter-auth-ui](https://github.com/pcherkasova/flutter-auth-ui)
