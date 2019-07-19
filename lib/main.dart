@@ -44,12 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (faui.User == null && this.wantToSignIn) {
       return faui.BuildAuthScreen(
-        onSuccess: () {
-          this.setState(() {
-            this.wantToSignIn = false;
-          });
-        },
-        onCancel: () {
+        onExit: () {
           this.setState(() {
             this.wantToSignIn = false;
           });
