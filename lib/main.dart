@@ -24,8 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool wantToSignIn = false;
   @override
   Widget build(BuildContext context) {
-    Text("This is demo for ");
-
+    
     if (faui.User == null && !this.wantToSignIn) {
       return Column(
         children: <Widget>[
